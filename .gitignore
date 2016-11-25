@@ -1,0 +1,5 @@
+.pyc
+BAM/__pycache__/*
+matches/__pycache__/*
+db.sqlite3
+
