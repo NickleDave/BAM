@@ -1,7 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
-class volunteer(models.Model):
+class Volunteer(models.Model):
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -69,7 +69,7 @@ class volunteer(models.Model):
         (KINDERGARTEN, 'K'),
         (PRIMARY, '1st-5th'),
         (MIDDLE, '6th-8th'),
-        (SECONDARY, '9th-12th'),s
+        (SECONDARY, '9th-12th'),
         ) 
     grade_preference = models.CharField(
         max_length = 2,
@@ -88,7 +88,7 @@ class volunteer(models.Model):
         choices = DRIVE_TIME_CHOICES)
     notes = models.TextField()
 
-class Teacher(models.Model):
+class Educator(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     school_name = models.CharField(max_length=250)
@@ -97,7 +97,7 @@ class Teacher(models.Model):
     email = models.EmailField()
     phone = PhoneNumberField()
     preferred_method_of_contact = models.CharField(
-        max_length = 2
+        max_length = 2,
         choices = (('PH', 'Phone'),('EM', 'e-mail'),)
         )
 
@@ -116,7 +116,7 @@ class Teacher(models.Model):
         ('EL', 'Eleventh'),
         ('TW', 'Twelfth'),
         )
-    grade_level = models.Charfield(
+    grade_level = models.CharField(
         max_length = 2,
         choices = GRADE_LEVEL_CHOICES
         )

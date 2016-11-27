@@ -1,5 +1,6 @@
 .pyc
 BAM/__pycache__/*
 matches/__pycache__/*
+matches/migrations/*
 db.sqlite3
 
