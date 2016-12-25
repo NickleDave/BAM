@@ -1,3 +1,7 @@
 from django.core.management import call_command
 
-call_command('loaddata', 'months.json', 'matches.MonthsForVisit')
+call_command('makemigrations')
+call_command('migrate')
+call_command('loaddata',
+             '--app matches',
+             'months.json')
