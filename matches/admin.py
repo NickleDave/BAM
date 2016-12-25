@@ -1,6 +1,14 @@
 from django.contrib import admin
+from django import forms
+from django.db import models
+from .models import Educator, Volunteer, MonthsForVisit
 
-from .models import Educator, Volunteer
+class EducatorAdmin(admin.ModelAdmin):
+    #form = EducatorAdminForm
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': forms.CheckboxSelectMultiple},
+            }
 
-admin.site.register(Educator)
 admin.site.register(Volunteer)
+admin.site.register(Educator, EducatorAdmin)
+admin.site.register(MonthsForVisit)

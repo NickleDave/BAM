@@ -1,5 +1,5 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
+from localflavor.us.models import PhoneNumberField
 
 class Volunteer(models.Model):
 
@@ -29,10 +29,16 @@ class Volunteer(models.Model):
     EMORY = 'EM'
     GTECH = 'GT'
     GSU = 'GS'
+    ASU = 'AS'
+    MC = 'MC'
+    OT = 'OT'
     UNIV_CHOICES = (
         (EMORY, 'Emory University'),
         (GTECH, 'Georgia Tech'),
         (GSU, 'Georgia State University'),
+        (ASU, 'Agnes Scott University'),
+        (MC, 'Morehouse College'),
+        (OT, 'Other'),
         )    
     university = models.CharField(
         max_length=2,
@@ -88,6 +94,10 @@ class Volunteer(models.Model):
         choices = DRIVE_TIME_CHOICES)
     notes = models.TextField()
 
+class MonthsForVisit(models.Model):
+    months = models.CharField(
+        max_length = 15)
+
 class Educator(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -123,24 +133,7 @@ class Educator(models.Model):
     number_of_classes = models.PositiveIntegerField(default=1)
     students_per_class = models.PositiveIntegerField()
     number_of_hours_requested = models.DecimalField(max_digits=4,decimal_places=2)
-    MONTH_CHOICES = (
-        ('JA', 'January'),
-        ('FE', 'February'),
-        ('MA', 'March'),
-        ('AP', 'April'),
-        ('MY', 'May'),
-        ('JU', 'June'),
-        ('JL', 'July',),
-        ('AU', 'August'),
-        ('SE', 'September'),
-        ('OC', 'October'),
-        ('NO', 'November'),
-        ('DE', 'December'),
-        )
-    available_months_for_visit = models.CharField(
-        max_length = 2,
-        choices = MONTH_CHOICES
-        )
+    months_for_visit = models.ManyToManyField(MonthsForVisit)
     possible_times_for_visit = models.CharField(max_length = 300)
     questions_or_comments = models.TextField()
     notes = models.TextField()
